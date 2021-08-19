@@ -1,0 +1,249 @@
+/*so does it mean that this control all the colors in our webpage? cool, like making it as a variable to use later*/
+
+:root{
+    --main-color: #FFFFFF;
+    --secondary-color: #ded9d9;
+    --third-color: #9c9c9c;
+    --title-color: #161616;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;/*copied from google. together with the link file that is in hmtl file.*/ 
+}
+
+body, html{
+    background-color: var(--main-color); /*assigning values I like that*/
+    width: 100%;
+    height: 100vh; /*vh interesting stuff*/
+}
+
+main{
+    position: fixed;
+    opacity: 0;
+    transform: translateY(20px);
+    top: 16px;
+    right: 16px; 
+    bottom: 16px;
+    left: 16px;
+    border: 1px solid var(--secondary-color);
+    transition: 1s;
+}
+
+.side-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18%;
+    height: 100%;
+    border-right: 1px solid var(--secondary-color);
+}
+
+/*nav is inside the .side-bar (check index.html page) so it has to be 100% if you want it to take the same width as side bar.*/
+.nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    border-bottom: 1px solid var(--secondary-color);
+    padding: 8px;
+    display: flex; /* noidea*/ 
+    justify-content: left;
+    align-items: center;
+    overflow: hidden; /* cool stuff so what this does is hides te items that dont fit in a bar*/
+}
+
+ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: space-between;
+}
+
+ul li{
+    letter-spacing: 1px;
+}
+
+.header{
+    font-size: 75%;
+    color: var(--title-color);
+}
+
+.mode{
+    font-size: 60%;
+    color: var(--third-color);
+    cursor: pointer;
+}
+
+.info{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 90%;
+}
+
+.desc{
+    position: absolute; /*interesting it goes to the bottom*/
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5%;
+    display: flex;
+}
+
+.title{
+    display: flex;
+    flex: 3;
+    align-items: center;
+    padding: 8px;
+}
+
+.title p{
+    width: 100%;
+    text-align: left;
+    font-size: 60%;
+    color: var(--third-color);
+    letter-spacing: 1px;
+}
+
+.counter{
+    display: flex;
+    flex: 1; /*interesting. dividing the space. everything is like boxes lel. like clay*/
+    padding: 8px;
+}
+
+.counter p{
+    width: 100%;
+    text-align: right;
+    font-size: 60%;
+    color: var(--third-color);
+    letter-spacing: 1px;
+}
+
+.gallery{
+    position: absolute;
+    top: 0px;
+    left: 18%;
+    width: 82%;
+    height: 100%;
+}
+
+.image-wrap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*ok this is just some magic, how did I align?*/
+    width: 70%;
+    /* height: 46.25%; */
+    padding-bottom: 46.25%;
+    overflow: hidden; /*try to see how if commented affects the image. kind of the image just pops out of the frame*/
+}
+
+.image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url(./gimages/5.jpg) ; */ /*removing for now cuz later will add it in js */
+    background-size: cover; /*makes the image to fit the proportion of the div*/
+    background-position: center;
+    transform: scale(1.5); 
+    transition: background-image 0.5s, transform 1.5s ease-out;
+} 
+
+.previous{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 3;
+    cursor: none;
+    opacity: 0.3;
+}
+
+.next{
+    position: absolute;
+    left: 59%;
+    top: 0;
+    width: 41%;
+    height: 100%;
+    z-index: 3; /*lil problem with the curson can be solved by changing this to 0, but let me look for another solution, making the winows half in half as they should be*/
+    cursor: none;
+    opacity: 0.3;
+}
+
+.cursor{
+    display: none;
+    pointer-events: none;
+}
+
+.cursor.right{
+    display: block;
+    position: fixed;
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    border-left: 10px solid var(--title-color);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    z-index: 10;
+}
+
+.cursor.left{
+    display: block;
+    position: fixed;
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    border-right: 10px solid var(--title-color);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    z-index: 10;
+}
+
+
+.splash{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--main-color);
+    z-index: 2; /*bringing all of this in front*/
+    display: flex;
+    padding: 2rem;
+    align-items: center;
+    justify-content: flex-end; /*making the text appear to the right*/
+    color: var(--third-color);
+}
+
+.splash.active{
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.splash-title-container{
+    width: 30%;
+    height: 20px;
+    overflow: hidden;
+}
+
+.splash-title{
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.splash-title span{
+    display: inline-block;
+    transform: translateY(20px);
+    transition 0.3s;
+}
